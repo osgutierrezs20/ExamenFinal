@@ -1,0 +1,27 @@
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'productos' %}">Tienda</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Producto</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'listar_productos' %}" class="nav-link">Listado de Productos</a>
+  </li>
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">@{{user.username | title}}</a>
+    </li>
+   {% else %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+    </li>
+   {% endif %}
+   class="section-title"
+
+   {% if perms.app.change_producto or perms.app.delete_producto %}
+   {% endif%}
+
+   path('login/', LoginView.as_view(redirect_authenticated_user=True,template_name='app/registro/login.html'), name='login'),
